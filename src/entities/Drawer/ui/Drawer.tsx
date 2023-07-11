@@ -29,7 +29,7 @@ export function Drawer({ isDrawer, setIsDrawer }: DrawerProps) {
         }
     };
     return (
-        <div>
+        <>
             {
                 isDrawer && (
                     <Portal>
@@ -47,6 +47,6 @@ export function Drawer({ isDrawer, setIsDrawer }: DrawerProps) {
                     </Portal>
                 )
             }
-        </div>
+        </>
     );
 }

@@ -1,9 +1,6 @@
 import React from 'react';
 import { cva, VariantProps } from 'class-variance-authority';
 
-// interface IconButtonProps extends ReactTagProps<'button'>, VariantProps<typeof iconButton> {
-//     className:string;
-// }
 export interface IconButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof iconButton> {
     className?:string;
     icon:React.ReactNode;

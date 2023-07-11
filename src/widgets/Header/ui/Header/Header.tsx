@@ -1,18 +1,13 @@
 'use client';
 
 import React, { useState } from 'react';
-import {
-    Bars3Icon,
-    MagnifyingGlassIcon,
-    ShoppingCartIcon,
-    UserIcon,
-} from '@heroicons/react/24/outline';
+import { Bars3Icon, ShoppingCartIcon, UserIcon } from '@heroicons/react/24/outline';
 import { Search } from '@/features/Search';
 import IconButton from '@/shared/ui/IconButton/IconButton';
-import { LinkList } from '@/entities/LinkList';
 import { Drawer } from '@/entities/Drawer/ui/Drawer';
 import { twMerge } from 'tailwind-merge';
-import { Logo } from './Logo';
+import { LinkList } from '../../../../entities/LinkList';
+import { Logo } from '../Logo/Logo';
 
 export function Header() {
     const [isDrawer, setIsDrawer] = useState(false);
