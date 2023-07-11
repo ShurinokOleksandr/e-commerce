@@ -6,8 +6,8 @@ import { Search } from '@/features/Search';
 import IconButton from '@/shared/ui/IconButton/IconButton';
 import { Drawer } from '@/entities/Drawer/ui/Drawer';
 import { twMerge } from 'tailwind-merge';
+import { Logo } from '@/shared/ui/Logo/Logo';
 import { LinkList } from '../../../../entities/LinkList';
-import { Logo } from '../Logo/Logo';
 
 export function Header() {
     const [isDrawer, setIsDrawer] = useState(false);

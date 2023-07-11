@@ -8,7 +8,7 @@ interface MyLinkProps extends LinkProps {
     name:string;
 }
 function MyLink({ className, name, href }:MyLinkProps) {
-    return <Link className={twMerge('text-dark-primary p-2 rounded-2xl transition hover:bg-light-secondary hover:text-secondary', className)} href={href}>{name}</Link>;
+    return <Link className={twMerge('w-max text-dark-primary py-1 px-2 rounded-2xl transition hover:bg-light-secondary hover:text-secondary', className)} href={href}>{name}</Link>;
 }
 
 export default MyLink;
