@@ -7,18 +7,19 @@ const button = cva('flex items-center justify-center p-2 rounded-2xl transition 
             third: [
                 ' bg-white border-2 hover:bg-primary text-dark-primary font-semibold hover:text-dark-primary',
             ],
-            addCart: 'block mx-auto bg-white text-secondary border hover:bg-secondary hover:text-white  border-secondary ',
             primary: [
                 'text-dark-primary  hover:bg-light-secondary hover:text-secondary ',
             ],
+            addCart: ' bg-white text-secondary border hover:bg-secondary hover:text-white  border-secondary ',
             secondary: [
                 'bg-light-third w-12 ml-4  hover:bg-hover-third',
             ],
         },
         size: {
-            small: ['w-[80%]  h-10'],
             large: ['w-full h-full'],
-            medium: ['w-150  h-12'],
+            medium: ['w-52 h-12'],
+            small: ['w-20  h-10'],
+            full: ['w-full'],
         },
     },
     defaultVariants: {
@@ -32,7 +33,7 @@ interface ButtonProps extends ReactTagProps<'button'>, VariantProps<typeof butto
     position?:boolean;
     className?:string;
     loading?:boolean;
-    name:string;
+    name?:string;
 }
 function Button({
     className, position, variant, loading, onClick, icon, size, name,

@@ -1,27 +1,26 @@
+'use client';
+
+import TabsDetailsProductCard from '@/entities/DetailsProductCard/ui/TabsDetailsProductCard';
+import { DetailsProductCard } from '@/entities/DetailsProductCard';
 import Typography from '@/shared/ui/Typography/ui/Typography';
+import { BreadCrumbs } from '@/entities/Breadcrumbs';
+import { SwiperImage } from '@/entities/Swiper';
 import React from 'react';
 
-export default async function Page({ params }: { params: { id: string } }) {
+export default function Page({ params }: { params: { id: string } }) {
     // const data = await getLol(params.id);
     const tex = 'Lenovo';
     return (
-        <main className=" shadow">
-            <div className="max-w-[1140px] w-[90%] xl:max-w-[1300px] xl:w-[90%] mx-auto pt-10">
-                <div className="h-16 bg-green-50">крошки хлебные</div>
-                <section className="bg-white">
-                    <div>
-                        <div>
-                            <Typography text="Name product" />
-                            <div className="flex gap-2 divide-x-2">
-                                <Typography text={`Name brand: ${tex}`} size="xs" />
-                                <div className="flex px-2">
-                                    <Typography className="font-semibold" text="Articular code:" size="xs" />
-                                    <Typography text={tex} size="xs" />
-                                </div>
-
-                            </div>
+        <main className="drop-shadow-2xl ">
+            <div className=" ">
+                <BreadCrumbs name="NAME" />
+                <section className="bg-white p-10">
+                    <div className="flex gap-12">
+                        <SwiperImage />
+                        <div className="flex flex-col gap-y-5 ">
+                            <DetailsProductCard />
+                            <TabsDetailsProductCard />
                         </div>
-                        <div />
                     </div>
                 </section>
             </div>

@@ -20,7 +20,7 @@ export function ProductCart() {
                 <Typography text="Артиккул" size="xs" />
                 <Typography text="In Stock" variant="stock" size="xs" />
                 <Typography variant="hot" text="$ 43" size="md" />
-                <Button variant="addCart" name="Добавить" size="small" />
+                <Button variant="addCart" name="Добавить" size="full" />
             </div>
         </div>
     );

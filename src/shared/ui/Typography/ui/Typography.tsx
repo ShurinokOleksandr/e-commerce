@@ -4,6 +4,7 @@ import React from 'react';
 const typography = cva('py-1', {
     variants: {
         variant: {
+            stock: 'text-stock font-bold bg-green-300 px-2 py-1 rounded-xl w-16',
             primary: [
                 'text-dark-primary',
             ],
@@ -12,7 +13,6 @@ const typography = cva('py-1', {
             ],
             semibold: 'text-dark-primary text-xs font-semibold',
             hot: 'text-hot-price font-bold',
-            stock: 'text-stock font-bold',
             third: [
 
             ],
@@ -20,19 +20,19 @@ const typography = cva('py-1', {
         size: {
             md: ['text-xl font-semibold'],
             sm: ['text-base'],
+            lg: ['text-2xl'],
             xs: ['text-sm'],
-            lg: [],
         },
     },
     defaultVariants: {
         variant: 'primary',
-        size: 'md',
+        size: 'sm',
     },
 });
 
 interface TypographyProps extends ReactTagProps<'p'>, VariantProps<typeof typography> {
+    text:string | number;
     className?:string;
-    text:string;
 }
 function Typography({
     className, variant, size, text,

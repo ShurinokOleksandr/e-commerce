@@ -19,7 +19,7 @@ export const Links: LinksType[] = [
     },
     {
         icon: <BeakerIcon width={20} />,
-        path: '/catalog',
+        path: '/product',
         text: 'КАТАЛОГ',
         position: false,
     },
