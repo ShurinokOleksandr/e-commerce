@@ -1,5 +1,5 @@
+import { VariantProps, cva } from 'class-variance-authority';
 import React from 'react';
-import { cva, VariantProps } from 'class-variance-authority';
 
 const typography = cva('py-1', {
     variants: {
@@ -10,18 +10,18 @@ const typography = cva('py-1', {
             secondary: [
                 'text-secondary',
             ],
+            semibold: 'text-dark-primary text-xs font-semibold',
+            hot: 'text-hot-price font-bold',
+            stock: 'text-stock font-bold',
             third: [
 
             ],
-            stock: 'text-stock font-bold',
-            hot: 'text-hot-price font-bold',
-            semibold: 'text-dark-primary text-xs font-semibold',
         },
         size: {
-            lg: [],
             md: ['text-xl font-semibold'],
             sm: ['text-base'],
             xs: ['text-sm'],
+            lg: [],
         },
     },
     defaultVariants: {

@@ -1,5 +1,5 @@
-import React from 'react';
 import { Input } from '@/shared/ui/Input/Input';
+import React from 'react';
 
 export function Search() {
     return (

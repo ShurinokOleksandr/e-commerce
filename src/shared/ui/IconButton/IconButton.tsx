@@ -1,9 +1,9 @@
+import { VariantProps, cva } from 'class-variance-authority';
 import React from 'react';
-import { cva, VariantProps } from 'class-variance-authority';
 
 export interface IconButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof iconButton> {
-    className?:string;
     icon:React.ReactNode;
+    className?:string;
 }
 
 const iconButton = cva(' flex items-center justify-center border rounded-full hover:bg-light-primary', {
@@ -28,13 +28,13 @@ const iconButton = cva(' flex items-center justify-center border rounded-full ho
     },
 });
 function IconButton({
-    className, variant, size, icon, onClick,
+    className, onClick, variant, icon, size,
 } :IconButtonProps) {
     return (
         <button
+            className={iconButton({ className, variant, size })}
             onClick={onClick}
             type="button"
-            className={iconButton({ variant, size, className })}
         >
             {icon}
         </button>

@@ -1,7 +1,7 @@
-import React from 'react';
-import Link from 'next/link';
-import { twMerge } from 'tailwind-merge';
 import { LinkProps } from 'next/dist/client/link';
+import { twMerge } from 'tailwind-merge';
+import Link from 'next/link';
+import React from 'react';
 
 interface MyLinkProps extends LinkProps {
     className?:string

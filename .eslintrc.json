@@ -3,11 +3,13 @@
     "next/core-web-vitals",
     "airbnb",
     "airbnb-typescript",
-    "plugin:storybook/recommended"
+    "plugin:storybook/recommended",
+    "plugin:perfectionist/recommended-line-length"
   ],
   "parserOptions": {
     "project": "./tsconfig.json"
   },
+  "plugins": ["perfectionist"],
   "rules": {
     "react/jsx-indent": [
       2,

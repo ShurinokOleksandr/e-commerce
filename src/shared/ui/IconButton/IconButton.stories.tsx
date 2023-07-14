@@ -1,6 +1,8 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { StoryObj, Meta } from '@storybook/react';
+
 import { Bars3Icon } from '@heroicons/react/24/outline';
 import React from 'react';
+
 import IconButton from './IconButton';
 
 const meta: Meta<typeof IconButton> = {
@@ -17,7 +19,7 @@ type Story = StoryObj<typeof IconButton>;
 
 export const Primary: Story = {
     args: {
+        children: <Bars3Icon height={40} width={40} />,
         className: '',
-        children: <Bars3Icon width={40} height={40} />,
     },
 };

@@ -1,24 +1,24 @@
+import { VariantProps, cva } from 'class-variance-authority';
 import React from 'react';
-import { cva, VariantProps } from 'class-variance-authority';
 
 const button = cva('flex items-center justify-center p-2 rounded-2xl transition ', {
     variants: {
         variant: {
+            third: [
+                ' bg-white border-2 hover:bg-primary text-dark-primary font-semibold hover:text-dark-primary',
+            ],
+            addCart: 'block mx-auto bg-white text-secondary border hover:bg-secondary hover:text-white  border-secondary ',
             primary: [
                 'text-dark-primary  hover:bg-light-secondary hover:text-secondary ',
             ],
             secondary: [
                 'bg-light-third w-12 ml-4  hover:bg-hover-third',
             ],
-            third: [
-                ' bg-white border-2 hover:bg-primary text-dark-primary font-semibold hover:text-dark-primary',
-            ],
-            addCart: 'block mx-auto bg-white text-secondary border hover:bg-secondary hover:text-white  border-secondary ',
         },
         size: {
+            small: ['w-[80%]  h-10'],
             large: ['w-full h-full'],
             medium: ['w-150  h-12'],
-            small: ['w-[80%]  h-10'],
         },
     },
     defaultVariants: {
@@ -28,20 +28,20 @@ const button = cva('flex items-center justify-center p-2 rounded-2xl transition 
 });
 
 interface ButtonProps extends ReactTagProps<'button'>, VariantProps<typeof button> {
+    icon?:React.ReactNode;
+    position?:boolean;
     className?:string;
     loading?:boolean;
     name:string;
-    icon?:React.ReactNode;
-    position?:boolean;
 }
 function Button({
-    className, onClick, name, loading, variant, size, icon, position,
+    className, position, variant, loading, onClick, icon, size, name,
 }:ButtonProps) {
     return (
         <button
-            type="button"
-            onClick={onClick}
             className={button({ className, variant, size })}
+            onClick={onClick}
+            type="button"
         >
             {/* Icon Button */}
             {
@@ -66,5 +66,4 @@ function Button({
         </button>
     );
 }
-
 export default Button;

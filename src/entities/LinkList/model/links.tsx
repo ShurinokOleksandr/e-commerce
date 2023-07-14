@@ -1,38 +1,38 @@
 import {
-    BanknotesIcon, BeakerIcon, BookOpenIcon, HomeIcon,
+    BanknotesIcon, BookOpenIcon, BeakerIcon, HomeIcon,
 } from '@heroicons/react/24/outline';
 import React from 'react';
 
 export interface LinksType {
     position:boolean;
+    text:string;
     path:string;
     icon:any;
-    text:string;
 }
 
 export const Links: LinksType[] = [
     {
-        position: true,
-        path: '/',
         icon: <HomeIcon width={20} />,
         text: 'ГЛАВНАЯ',
+        position: true,
+        path: '/',
     },
     {
-        position: false,
-        path: '/catalog',
         icon: <BeakerIcon width={20} />,
+        path: '/catalog',
         text: 'КАТАЛОГ',
+        position: false,
     },
     {
+        icon: <BookOpenIcon width={20} />,
         position: false,
         path: '/about',
-        icon: <BookOpenIcon width={20} />,
         text: 'О НАС',
     },
     {
-        position: false,
-        path: '/cart',
         icon: <BanknotesIcon width={20} />,
         text: 'КОРЗИНА',
+        position: false,
+        path: '/cart',
     },
 ];
