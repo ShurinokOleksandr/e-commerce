@@ -11,14 +11,16 @@ const button = cva('flex items-center justify-center p-2 rounded-2xl transition 
                 'text-dark-primary  hover:bg-light-secondary hover:text-secondary ',
             ],
             addCart: ' bg-white text-secondary border hover:bg-secondary hover:text-white  border-secondary ',
+            quantity: 'flex m-0 items-center justify-center rounded-full bg-light-primary hover:bg-primary ',
             secondary: [
-                'bg-light-third w-12 ml-4  hover:bg-hover-third',
+                'bg-light-third w-12   hover:bg-hover-third',
             ],
         },
         size: {
             large: ['w-full h-full'],
-            medium: ['w-52 h-12'],
             small: ['w-20  h-10'],
+            medium: ['w-52 h-12'],
+            rounded: ['w-7 h-7'],
             full: ['w-full'],
         },
     },
@@ -47,7 +49,7 @@ function Button({
             {/* Icon Button */}
             {
                 position === true && (
-                    <span className="block mr-1">
+                    <span className={`block ${variant === 'quantity' ? '' : 'mr-1'}`}>
                         {icon}
                     </span>
                 )
@@ -59,7 +61,7 @@ function Button({
             {/* Icon Button */}
             {
                 position === false && (
-                    <span className="block ml-1">
+                    <span className={`block ${variant === 'quantity' ? '' : 'ml-1'}`}>
                         {icon}
                     </span>
                 )

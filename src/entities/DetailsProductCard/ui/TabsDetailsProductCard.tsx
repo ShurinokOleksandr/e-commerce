@@ -1,5 +1,4 @@
 import Typography from '@/shared/ui/Typography/ui/Typography';
-import Button from '@/shared/ui/Button/Button';
 import { twMerge } from 'tailwind-merge';
 import React, { useState } from 'react';
 
@@ -19,13 +18,13 @@ function TabsDetailsProductCard() {
         <div className="animate-fade">
             <ul className="flex divide-x-2  divide-amber-600 gap-x-3">
                 <li
-                    className={twMerge(` ${isDescription ? 'font-bold' : 'font-light'}`)}
+                    className={twMerge(` cursor-pointer ${isDescription ? 'font-bold' : 'font-light'}`)}
                     onClick={handleDescription}
                 >
                     Описание
                 </li>
                 <li
-                    className={twMerge(`px-2  ${isCompatibility ? 'font-bold' : 'font-light'}`)}
+                    className={twMerge(`px-2 cursor-pointer  ${isCompatibility ? 'font-bold' : 'font-light'}`)}
                     onClick={handleCompatibility}
                 >
                     Совместимость
