@@ -7,12 +7,10 @@ import { twMerge } from 'tailwind-merge';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 
-import './multiRangeSlider.css';
-
 interface MultiRangeSliderProps {
-    onChange?:() => void;
-    max:number;
     min:number;
+    max:number;
+    onChange?:() => void;
 }
 function MultiRangeSlider({ onChange, max, min }:MultiRangeSliderProps) {
     const [minVal, setMinVal] = useState(min);
