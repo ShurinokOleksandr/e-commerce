@@ -17,7 +17,6 @@ export function BreadCrumbs({ name }:BreadCrumbsProps) {
         pathArray[lastIndex] = name;
         return pathArray.filter((item) => item.length > 0);
     }, []);
-    console.log(crumbs.length - 1 === 0);
     return (
         <div className="h-10 flex items-center text-sm gap-2 ">
             <Link href="/">

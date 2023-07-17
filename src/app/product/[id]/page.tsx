@@ -1,15 +1,12 @@
-'use client';
-
 import TabsDetailsProductCard from '@/entities/DetailsProductCard/ui/TabsDetailsProductCard';
 import { DetailsProductCard } from '@/entities/DetailsProductCard';
-import Typography from '@/shared/ui/Typography/ui/Typography';
 import { BreadCrumbs } from '@/entities/Breadcrumbs';
 import { SwiperImage } from '@/entities/Swiper';
 import React from 'react';
 
 export default function Page({ params }: { params: { id: string } }) {
-    // const data = await getLol(params.id);
-    const tex = 'Lenovo';
+    // const data = await getBestsellers(params.id);
+
     return (
         <main className="drop-shadow-2xl ">
             <div className=" ">

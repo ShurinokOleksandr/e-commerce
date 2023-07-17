@@ -16,7 +16,7 @@ export function Header() {
     };
 
     return (
-        <header className="w-screen border-b">
+        <header className=" border-b">
             <div className="max-w-[1140px] w-[90%] xl:max-w-[1300px] xl:w-[90%] mx-auto pt-10 ">
                 <section className="flex items-center justify-between color-blue">
                     <Logo className="w-[170px] flex flex-col" />

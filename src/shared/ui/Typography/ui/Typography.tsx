@@ -4,7 +4,7 @@ import React from 'react';
 const typography = cva('py-1', {
     variants: {
         variant: {
-            stock: 'text-stock font-bold bg-green-300 px-2 py-1 rounded-xl w-16',
+            stock: 'inline text-stock font-bold bg-green-300 px-3 py-1 rounded-xl ',
             primary: [
                 'text-dark-primary',
             ],
@@ -31,8 +31,8 @@ const typography = cva('py-1', {
 });
 
 interface TypographyProps extends ReactTagProps<'p'>, VariantProps<typeof typography> {
-    text:string | number;
     className?:string;
+    text:string | number;
 }
 function Typography({
     className, variant, size, text,

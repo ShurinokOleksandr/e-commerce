@@ -1,31 +1,29 @@
+'use client';
+
 import Typography from '@/shared/ui/Typography/ui/Typography';
 import { twMerge } from 'tailwind-merge';
 import React, { useState } from 'react';
 
 function TabsDetailsProductCard() {
-    const [isDescription, setIsDecription] = useState(true);
+    const [isDescription, setIsDescription] = useState(true);
     const [isCompatibility, setIsCompatibility] = useState(false);
 
-    const handleDescription = () => {
-        setIsDecription(true);
-        setIsCompatibility(false);
-    };
-    const handleCompatibility = () => {
-        setIsDecription(false);
-        setIsCompatibility(true);
+    const handleTabs = () => {
+        setIsDescription(!isDescription);
+        setIsCompatibility(!isCompatibility);
     };
     return (
         <div className="animate-fade">
             <ul className="flex divide-x-2  divide-amber-600 gap-x-3">
                 <li
                     className={twMerge(` cursor-pointer ${isDescription ? 'font-bold' : 'font-light'}`)}
-                    onClick={handleDescription}
+                    onClick={handleTabs}
                 >
                     Описание
                 </li>
                 <li
                     className={twMerge(`px-2 cursor-pointer  ${isCompatibility ? 'font-bold' : 'font-light'}`)}
-                    onClick={handleCompatibility}
+                    onClick={handleTabs}
                 >
                     Совместимость
                 </li>

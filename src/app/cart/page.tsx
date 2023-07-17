@@ -10,7 +10,7 @@ function Page() {
         <div className="">
             <BreadCrumbs name="cart" />
             <div className="flex  items-center gap-12">
-                <div className="w-4/5 flex flex-col ">
+                <div className="w-4/5  ">
                     <table>
                         <thead className="border-b">
                             <tr>
@@ -48,10 +48,15 @@ function Page() {
                             </tr>
                         </tbody>
                     </table>
-                    <Button className="justify-end" variant="secondary" name="Удалить всё" />
+                    <Button name="Удалить всё" className="my-5" variant="third" />
                 </div>
-                <div className="w-1/3 bg-primary">
-                    cart toal
+                <div className="w-1/3 border-2 p-5">
+                    <Typography className="border-b my-5 font-semibold " text="CART TOTAL" />
+                    <div className="flex justify-between border-b my-5">
+                        <Typography className="border-b  " text="Subtotal" size="sm" />
+                        <Typography className="border-b " text="$3432" size="sm" />
+                    </div>
+                    <Button name="Оформить заказ" variant="addCart" size="full" />
                 </div>
             </div>
         </div>

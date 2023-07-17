@@ -17,8 +17,8 @@ const button = cva('flex items-center justify-center p-2 rounded-2xl transition 
             ],
         },
         size: {
+            small: ['w-30  h-10 text-sm'],
             large: ['w-full h-full'],
-            small: ['w-20  h-10'],
             medium: ['w-52 h-12'],
             rounded: ['w-7 h-7'],
             full: ['w-full'],
@@ -31,11 +31,11 @@ const button = cva('flex items-center justify-center p-2 rounded-2xl transition 
 });
 
 interface ButtonProps extends ReactTagProps<'button'>, VariantProps<typeof button> {
-    icon?:React.ReactNode;
-    position?:boolean;
-    className?:string;
-    loading?:boolean;
     name?:string;
+    loading?:boolean;
+    className?:string;
+    position?:boolean;
+    icon?:React.ReactNode;
 }
 function Button({
     className, position, variant, loading, onClick, icon, size, name,

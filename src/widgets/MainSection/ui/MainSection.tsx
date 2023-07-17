@@ -1,9 +1,13 @@
+'use client';
+
+import { ProductListSwiper } from '@/shared/ui/ProductListSwiper/ui/ProductListSwiper';
 import Typography from '@/shared/ui/Typography/ui/Typography';
 import { ArrowRightIcon } from '@heroicons/react/24/outline';
-import { ProductCart } from '@/entities/ProductCart';
 import Button from '@/shared/ui/Button/Button';
 import { twMerge } from 'tailwind-merge';
 import React from 'react';
+
+import { Product } from '../../../entities/Product';
 
 interface MainSectionProps {
     className: string
@@ -36,14 +40,7 @@ export function MainSection({ className }: MainSectionProps) {
                     </div>
                 </header>
                 <section className="border">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 w-full">
-                        <ProductCart />
-                        <ProductCart />
-                        <ProductCart />
-                        <ProductCart />
-                        <ProductCart />
-                        <ProductCart />
-                    </div>
+                    <ProductListSwiper data={[]} />
                 </section>
             </section>
 
