@@ -1,11 +1,11 @@
-export interface IShoppingCartItem {
+export interface ShoppingCartItem {
     id: number
     name: string
-    count: number
-    image: string
     price: number
-    partId: number
+    count: number
     userId: number
+    partId: number
+    images: string
     in_stock: number
     total_price: number
     parts_manufacturer: string

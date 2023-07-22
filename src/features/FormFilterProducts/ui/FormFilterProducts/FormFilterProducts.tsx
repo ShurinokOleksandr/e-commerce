@@ -1,6 +1,8 @@
+'use client';
+
 import { CheckboxFilterList, partsManufactures, pcManufactures } from '@/entities/CheckboxFilter';
 import MultiRangeSlider from '@/shared/ui/MultiRange/MultiRangeSlider';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 export function FormFilterProducts() {
     return (

@@ -4,7 +4,6 @@ import React from 'react';
 const typography = cva('py-1', {
     variants: {
         variant: {
-            stock: 'inline text-stock font-bold bg-green-300 px-3 py-1 rounded-xl ',
             primary: [
                 'text-dark-primary',
             ],
@@ -12,6 +11,7 @@ const typography = cva('py-1', {
                 'text-secondary',
             ],
             semibold: 'text-dark-primary text-xs font-semibold',
+            stock: 'inline text-stock font-bold',
             hot: 'text-hot-price font-bold',
             third: [
 

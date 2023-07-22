@@ -1,49 +1,27 @@
-import { ProductListSwiper } from '@/shared/ui/ProductListSwiper/ui/ProductListSwiper';
-import Typography from '@/shared/ui/Typography/ui/Typography';
-import { ArrowRightIcon } from '@heroicons/react/24/outline';
+import { ProductListSwiper } from '@/entities/ProductListSwiper';
 import { getBestsellers } from '@/action/getBestsellers';
-import Button from '@/shared/ui/Button/Button';
+import { getNewItems } from '@/action/getNewItems';
 import { twMerge } from 'tailwind-merge';
 import React from 'react';
 
 export default async function Home() {
-    const { rows } = await getBestsellers(10);
+    const bestsellers = await getBestsellers(10);
+    const newItem = await getNewItems(10);
 
     return (
         <main className="max-w-[1140px] w-[90%] xl:max-w-[1300px] xl:w-[90%] mx-auto pt-10">
-            <section className={twMerge('my-5')}>
-                <section>
-                    <header>
-                        <div className=" w-full  md:flex justify-between ">
-                            <div className="my-5">
-                                <Typography
-                                    text="Лучшие продажи"
-                                    size="md"
-                                />
-                                <Typography
-                                    text=" Не пропустите актуальные предложения до конца жизни."
-                                    size="xs"
-                                />
-                            </div>
-                            <div className="my-5">
-                                <Button
-                                    icon={<ArrowRightIcon width={15} />}
-                                    position={false}
-                                    name="View all"
-                                    variant="third"
-                                />
-                            </div>
-                        </div>
-                    </header>
-
-                    <section className="border">
-                        <ProductListSwiper data={rows} />
-                    </section>
-
-                </section>
-
+            <section className={twMerge('my-5 flex flex-col gap-y-10')}>
+                <ProductListSwiper
+                    subTitle="Не пропустите актуальные предложения до конца марта."
+                    title="Лучшие продажи"
+                    row={bestsellers}
+                />
+                <ProductListSwiper
+                    subTitle="Не пропустите актуальные предложения до конца марта."
+                    title="Новинки товаров"
+                    row={newItem}
+                />
             </section>
-
         </main>
     );
 }

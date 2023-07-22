@@ -1,6 +1,6 @@
 'use client';
 
-import { ProductListSwiper } from '@/shared/ui/ProductListSwiper/ui/ProductListSwiper';
+import { ProductListSwiper } from '@/shared/ui/Swiper/ui/Swiper';
 import Typography from '@/shared/ui/Typography/ui/Typography';
 import { ArrowRightIcon } from '@heroicons/react/24/outline';
 import Button from '@/shared/ui/Button/Button';

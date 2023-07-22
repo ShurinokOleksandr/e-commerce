@@ -3,7 +3,7 @@ import IconButton from '@/shared/ui/IconButton/IconButton';
 import { twMerge } from 'tailwind-merge';
 import React from 'react';
 
-interface InputProps {
+interface InputProps extends ReactTagProps<'input'> {
     className?:string
 }
 
