@@ -29,6 +29,7 @@ export function BreadCrumbs({ name }:BreadCrumbsProps) {
                         lastIndex={index === crumbs.length - 1}
                         link="/about"
                         name={item}
+                        key={item}
                     />
                 ))
             }

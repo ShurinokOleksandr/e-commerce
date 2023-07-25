@@ -8,6 +8,7 @@ const button = cva('p-2  flex items-center gap-x-1 justify-center  rounded-2xl t
             addCart: ' bg-white text-secondary border hover:bg-secondary hover:text-white  border-secondary ',
             quantity: 'flex m-0 items-center justify-center rounded-full bg-light-primary hover:bg-primary ',
             primary: 'text-dark-primary  hover:bg-light-secondary hover:text-secondary ',
+            submit: 'bg-dark-secondary text-light-primary hover:bg-dark-primary',
             secondary: 'bg-light-third w-12   hover:bg-hover-third',
             swiper: 'bg-white ',
         },
@@ -33,7 +34,7 @@ interface ButtonProps extends ReactTagProps<'button'>, VariantProps<typeof butto
     icon?:React.ReactNode;
 }
 function Button({
-    className, disabled, position, onClick, loading, variant, name, size, icon,
+    className, disabled, position, onClick, loading, variant, name, size, icon, type,
 }:ButtonProps) {
     const isDisabled = `block ${disabled && 'opacity-10'}`;
     return (
@@ -41,7 +42,7 @@ function Button({
             className={button({ className, variant, size })}
             disabled={disabled}
             onClick={onClick}
-            type="button"
+            type={type}
         >
 
             {/* Icon Button */}

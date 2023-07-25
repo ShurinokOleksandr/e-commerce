@@ -4,10 +4,10 @@ import {
 import React from 'react';
 
 export interface LinksType {
-    position:boolean;
-    text:string;
-    path:string;
     icon:any;
+    path:string;
+    text:string;
+    position:boolean;
 }
 
 export const Links: LinksType[] = [

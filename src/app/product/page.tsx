@@ -1,4 +1,5 @@
 import { FormFilterProducts } from '@/features/FormFilterProducts';
+import { SearchParams } from '@/shared/types/SearchParams';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { getPagination } from '@/action/getPagination';
 import { GridProduct } from '@/entities/ProductGrid';
@@ -6,7 +7,7 @@ import { Selection } from '@/entities/Selection';
 import Button from '@/shared/ui/Button/Button';
 import React from 'react';
 
-export default async function Page({ searchParams }) {
+export default async function Page({ searchParams }:{ searchParams:SearchParams }) {
     const paginateItems = await getPagination(searchParams.offset);
 
     return (

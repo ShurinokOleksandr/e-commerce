@@ -45,6 +45,8 @@
       }
     ],
     "@typescript-eslint/naming-convention": "off",
-    "react/react-in-jsx-scope":"off"
+    "react/react-in-jsx-scope":"off",
+    "no-return-assign": "off",
+    "consistent-return": "off"
   }
 }

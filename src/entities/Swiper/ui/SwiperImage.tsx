@@ -4,15 +4,19 @@ import { Navigation, FreeMode, Thumbs } from 'swiper/modules';
 // Import Swiper React components
 import { SwiperSlide, Swiper } from 'swiper/react';
 import React, { useState, useRef } from 'react';
+import Image from 'next/image';
 import 'swiper/css/navigation';
+import { isArray } from 'util';
 import 'swiper/css/free-mode';
 import 'swiper/css/thumbs';
 // Import Swiper styles
 import 'swiper/css';
 
-export function SwiperImage() {
+interface SwiperImageProps {
+    data:string
+}
+export function SwiperImage({ data }:SwiperImageProps) {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
-
     return (
         <div className="w-1/4">
             <Swiper
@@ -22,12 +26,13 @@ export function SwiperImage() {
                 spaceBetween={10}
                 loop
             >
-                <SwiperSlide>
-                    <img src="https://swiperjs.com/demos/images/nature-1.jpg" alt="as" />
-                </SwiperSlide>
-                <SwiperSlide>
-                    <img src="https://swiperjs.com/demos/images/nature-2.jpg" alt="as" />
-                </SwiperSlide>
+                {
+                    JSON.parse(data).map((item:string) => (
+                        <SwiperSlide>
+                            <Image height={350} width={350} src={item} alt="as" />
+                        </SwiperSlide>
+                    ))
+                }
             </Swiper>
             <Swiper
                 modules={[FreeMode, Navigation, Thumbs]}
@@ -40,12 +45,14 @@ export function SwiperImage() {
                 freeMode
                 loop
             >
-                <SwiperSlide>
-                    <img src="https://swiperjs.com/demos/images/nature-1.jpg" alt="te" />
-                </SwiperSlide>
-                <SwiperSlide>
-                    <img src="https://swiperjs.com/demos/images/nature-2.jpg" alt="te" />
-                </SwiperSlide>
+                {
+                    JSON.parse(data).map((item:string) => (
+                        <SwiperSlide>
+                            <Image height={100} width={100} src={item} alt="as" />
+
+                        </SwiperSlide>
+                    ))
+                }
             </Swiper>
         </div>
     );

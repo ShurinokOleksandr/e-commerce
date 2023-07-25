@@ -11,7 +11,7 @@ const typography = cva('py-1', {
                 'text-secondary',
             ],
             semibold: 'text-dark-primary text-xs font-semibold',
-            stock: 'inline text-stock font-bold',
+            stock: 'inline text-stock font-bold bg-lime-200',
             hot: 'text-hot-price font-bold',
             third: [
 
@@ -23,6 +23,9 @@ const typography = cva('py-1', {
             lg: ['text-2xl'],
             xs: ['text-sm'],
         },
+        position: {
+            center: 'text-center',
+        },
     },
     defaultVariants: {
         variant: 'primary',
@@ -32,14 +35,16 @@ const typography = cva('py-1', {
 
 interface TypographyProps extends ReactTagProps<'p'>, VariantProps<typeof typography> {
     className?:string;
-    text:string | number;
+    text:undefined | number | string;
 }
 function Typography({
-    className, variant, size, text,
+    className, position, variant, text, size,
 }:TypographyProps) {
     return (
         <p
-            className={typography({ className, variant, size })}
+            className={typography({
+                className, position, variant, size,
+            })}
         >
             {text}
         </p>

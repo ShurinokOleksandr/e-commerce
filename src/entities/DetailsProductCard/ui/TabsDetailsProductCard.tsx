@@ -1,10 +1,14 @@
 'use client';
 
 import Typography from '@/shared/ui/Typography/ui/Typography';
+import { ProductType } from '@/entities/Product';
 import { twMerge } from 'tailwind-merge';
 import React, { useState } from 'react';
 
-function TabsDetailsProductCard() {
+interface TabsDetailsProductCardProps {
+    data:ProductType
+}
+function TabsDetailsProductCard({ data }:TabsDetailsProductCardProps) {
     const [isDescription, setIsDescription] = useState(true);
     const [isCompatibility, setIsCompatibility] = useState(false);
 
@@ -33,11 +37,11 @@ function TabsDetailsProductCard() {
                 isDescription
                     ? (
                         <Typography
-                            text="lorem100lorem100lorem 100lorem100lo rem100lorem00lorem100lo rem100lom100 rem100lorem100 rem100lorem100 rem100lorem100 rem100lorem100 rem100lorem100 rem100lorem100 rem100lorem100 lorem100"
+                            text={data.compatibity}
                             size="sm"
                         />
                     )
-                    : <Typography text="lorem1lorem100 rrem100 lorem100" size="sm" />
+                    : <Typography text={data.description} size="sm" />
             }
 
         </div>
