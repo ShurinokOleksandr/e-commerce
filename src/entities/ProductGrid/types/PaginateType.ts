@@ -1,6 +1,6 @@
 import { ProductType } from '@/entities/Product/types/Product';
 
-export type Paginate = {
+export type ProductResponse = {
     rows:ProductType[]
     count:number
 };

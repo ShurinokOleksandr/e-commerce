@@ -1,7 +1,7 @@
 import { VariantProps, cva } from 'class-variance-authority';
 import React from 'react';
 
-const button = cva('p-2  flex items-center gap-x-1 justify-center  rounded-2xl transition ', {
+const button = cva('p-2 transform active:scale-75 transition-transform  flex items-center gap-x-1 justify-center  rounded-2xl transition ', {
     variants: {
         variant: {
             third: 'flex bg-white border-2 hover:bg-primary text-dark-primary font-semibold hover:text-dark-primary',

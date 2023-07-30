@@ -13,9 +13,7 @@ const typography = cva('py-1', {
             semibold: 'text-dark-primary text-xs font-semibold',
             stock: 'inline text-stock font-bold bg-lime-200',
             hot: 'text-hot-price font-bold',
-            third: [
 
-            ],
         },
         size: {
             md: ['text-xl font-semibold'],

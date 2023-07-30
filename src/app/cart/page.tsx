@@ -1,6 +1,7 @@
 'use client';
 
 import { MinusIcon, XMarkIcon, PlusIcon } from '@heroicons/react/24/outline';
+import { NotFoundItems } from '@/shared/ui/NotFoundItems/ui/NotFoundItems';
 import Typography from '@/shared/ui/Typography/ui/Typography';
 import { BreadCrumbs } from '@/entities/Breadcrumbs';
 import { useCartStore } from '@/entities/Product';
@@ -69,7 +70,7 @@ function Page() {
                         </tbody>
                     </table>
                     {
-                        cartStore.length === 0 && <Typography text="Товаров нет." position="center" size="lg" />
+                        cartStore.length === 0 && <NotFoundItems />
                     }
                     {
                         cartStore.length !== 0 && <Button onClick={() => removeAll()} name="Удалить всё" className="my-5" variant="third" />

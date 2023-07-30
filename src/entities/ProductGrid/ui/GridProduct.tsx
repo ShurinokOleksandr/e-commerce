@@ -1,6 +1,6 @@
 'use client';
 
-import { Paginate } from '@/entities/ProductGrid/types/PaginateType';
+import { ProductResponse } from '@/entities/ProductGrid/types/PaginateType';
 import { SearchParams } from '@/shared/types/SearchParams';
 import { Pagination } from '@/entities/Pagination';
 import React, { useState, memo } from 'react';
@@ -9,8 +9,8 @@ import { useRouter } from 'next/navigation';
 import ReactPaginate from 'react-paginate';
 
 interface GridProductProps {
-    paginateItems: Paginate
     searchParams:SearchParams
+    paginateItems: ProductResponse
 }
 
 export function GridProduct({ paginateItems, searchParams }:GridProductProps) {
