@@ -68,6 +68,7 @@ export function Swiper({ data = [] }:SwiperProps) {
                         data.map((item, index) => (
                             <div
                                 ref={index === data.length - 1 ? ref : null}
+                                key={item.id}
                             >
                                 <Product className="w-[16.25rem]" {...item} />
                             </div>

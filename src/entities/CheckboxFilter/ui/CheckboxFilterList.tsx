@@ -4,8 +4,8 @@ import React from 'react';
 import { CheckboxFilter } from './CheckboxFilter';
 
 interface CheckboxFilterListProps {
-    listFilters:string[];
     name:string;
+    listFilters:string[];
 }
 
 export function CheckboxFilterList({ listFilters, name }: CheckboxFilterListProps) {
@@ -16,6 +16,7 @@ export function CheckboxFilterList({ listFilters, name }: CheckboxFilterListProp
                 listFilters.map((item) => (
                     <CheckboxFilter
                         filter={item}
+                        key={item}
                     />
                 ))
             }

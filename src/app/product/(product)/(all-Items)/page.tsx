@@ -11,7 +11,7 @@ export default async function Page({ searchParams }:{ searchParams:SearchParams 
     const paginateItems = await getPagination(searchParams.offset);
 
     return (
-        <main className="flex my-5 disabled:bg-gray-800 ">
+        <div className="flex my-5 disabled:bg-gray-800 ">
             <aside className="w-[270px]">
                 <FormFilterProducts />
             </aside>
@@ -28,6 +28,7 @@ export default async function Page({ searchParams }:{ searchParams:SearchParams 
                 </div>
                 <GridProduct paginateItems={paginateItems} searchParams={searchParams} />
             </section>
-        </main>
+        </div>
+
     );
 }

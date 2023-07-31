@@ -30,11 +30,8 @@ export function GridProduct({ paginateItems, searchParams }:GridProductProps) {
                 {
                     paginateItems.rows.map((item) => (
                         <Product
-                            in_stock={item.in_stock}
-                            images={item.images}
-                            price={item.price}
-                            name={item.name}
-                            id={item.id}
+                            key={item.id}
+                            {...item}
                         />
                     ))
                 }
