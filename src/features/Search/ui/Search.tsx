@@ -1,15 +1,12 @@
-import { NotFoundItems } from '@/shared/ui/NotFoundItems/ui/NotFoundItems';
-import { images } from 'next/dist/build/webpack/config/blocks/images';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import { useSearchStore } from '@/features/Search/model/store';
 import Typography from '@/shared/ui/Typography/ui/Typography';
+import React, { useEffect, useState, useRef } from 'react';
 import { Input } from '@/shared/ui/Input/Input';
 import Button from '@/shared/ui/Button/Button';
 import { useRouter } from 'next/navigation';
-import React, { useState } from 'react';
-import Image from 'next/image';
 import fetch from 'node-fetch';
-import Link from 'next/link';
+import Image from 'next/image';
 
 export function Search() {
     const [isOpen, setIsOpen] = useState(false);
@@ -18,7 +15,22 @@ export function Search() {
     const setSearchInput = useSearchStore((state) => state.setSearchInput);
     const setDataSearch = useSearchStore((state) => state.setSearchItems);
     const router = useRouter();
+    const searchResultsRef = useRef<HTMLDivElement | null>(null); // Create a ref for the search results container
 
+    useEffect(() => {
+        const handleOutsideClick = (e) => {
+            if (searchResultsRef.current && !searchResultsRef.current.contains(e.target)) {
+                setIsOpen(false);
+                setSearchInput('');
+                setDataSearch([]);
+            }
+        };
+        document.addEventListener('click', handleOutsideClick);
+
+        return () => {
+            document.removeEventListener('click', handleOutsideClick);
+        };
+    }, []);
     const searchItems = async () => {
         try {
             setIsOpen(true);
@@ -37,14 +49,25 @@ export function Search() {
             console.log(e);
         }
     };
-    console.log(dataSearch);
     const clearSearch = () => {
         setIsOpen(false);
         setDataSearch([]);
         setSearchInput('');
     };
+
+    const redirectToProduct = (id:number) => {
+        router.push(`/product/${id}`);
+        setIsOpen(false);
+        setSearchInput('');
+    };
+
+    const redirectToCatalog = (name:string) => {
+        router.push(`/product/search?name=${name}`);
+        setIsOpen(false);
+    };
     return (
-        <div className="w-3/5 mx-5 relative">
+        <div className="w-3/5 mx-5 relative" ref={searchResultsRef}>
+
             <Input
                 searchButton={(
                     <MagnifyingGlassIcon
@@ -59,38 +82,43 @@ export function Search() {
                 onClear={clearSearch}
                 value={inputValue}
             />
-            <div className=" absolute z-50 w-full ">
-
+            <div className=" absolute z-50 w-full">
                 {
                     !isOpen ? <></>
                         : (
-                            <div className="bg-white border rounded-2xl animate-fade">
-                                {dataSearch.map((item) => (
-                                    <Link
-                                        className="block   px-5 py-2 hover:bg-light-primary flex justify-between m-1"
-                                        href={`product/${item.id}`}
-                                    >
-                                        <div className="flex gap-x-2">
-                                            <Image
-                                                src={JSON.parse(item.images)[0]}
-                                                alt="Picture of the author"
-                                                className="rounded"
-                                                height={50}
-                                                width={50}
-                                            />
-                                            <Typography position="center" text={item.name} />
+                            <div className=" bg-white border rounded-2xl animate-fade">
+                                {
+                                    dataSearch.map((item) => (
+                                        <div
+                                            className="flex px-5 py-2 hover:bg-light-primary justify-between m-1"
+                                            onClick={() => redirectToProduct(item.id)}
+                                            key={item.id}
+                                        >
+                                            <div className="flex gap-x-2">
+                                                <Image
+                                                    src={JSON.parse(item.images)[0]}
+                                                    alt="Picture of the author"
+                                                    className="rounded"
+                                                    height={50}
+                                                    width={50}
+                                                />
+                                                <Typography position="center" text={item.name} />
+                                            </div>
+                                            <Typography text={`Цена: ${item.price}$`} position="center" />
                                         </div>
-                                        <Typography text={`Цена: ${item.price}$`} position="center" />
-                                    </Link>
-                                ))}
-                                <Button name="Посмотреть все..." variant="third" size="full" />
+                                    ))
+                                }
+                                <Button
+                                    onClick={() => redirectToCatalog(inputValue)}
+                                    name="Посмотреть все..."
+                                    variant="third"
+                                    size="full"
+                                />
                             </div>
                         )
-
                 }
-
-                {/*  */}
             </div>
         </div>
+
     );
 }

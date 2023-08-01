@@ -49,7 +49,6 @@ export function SwiperImage({ data }:SwiperImageProps) {
                     JSON.parse(data).map((item:string) => (
                         <SwiperSlide>
                             <Image height={100} width={100} src={item} alt="as" />
-
                         </SwiperSlide>
                     ))
                 }

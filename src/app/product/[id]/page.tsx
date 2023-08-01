@@ -13,7 +13,7 @@ export default async function Page({ params }: { params: { id: string } }) {
     const bestsellers = await getBestsellers(10);
 
     return (
-        <main className="drop-shadow-2xl ">
+        <main className="drop-shadow-2xl max-w-[1140px]  w-[90%] xl:max-w-[1300px] xl:w-[90%] mx-auto ">
             <div className=" ">
                 <BreadCrumbs name={data.name} />
                 <section className="bg-white p-10">

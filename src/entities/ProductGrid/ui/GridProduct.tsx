@@ -9,19 +9,18 @@ import { useRouter } from 'next/navigation';
 import ReactPaginate from 'react-paginate';
 
 interface GridProductProps {
-    searchParams:SearchParams
+    paginateUrl:string
     paginateItems: ProductResponse
 }
 
-export function GridProduct({ paginateItems, searchParams }:GridProductProps) {
+export function GridProduct({ paginateItems, paginateUrl }:GridProductProps) {
     const router = useRouter();
-
     const [currentPage, setCurrentPage] = useState(0);
     // Counts of pages for pagination
     const pageCounts = Math.ceil(paginateItems.count / 20);
 
     const handleClickPaginate = (value: number) => {
-        router.push(`/product?limit=20&offset=${value}`);
+        router.push(`${paginateUrl}${value}`);
         setCurrentPage(value);
     };
     return (

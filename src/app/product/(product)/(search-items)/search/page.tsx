@@ -8,7 +8,7 @@ import Button from '@/shared/ui/Button/Button';
 import React from 'react';
 
 export default async function Page({ searchParams }:{ searchParams:SearchParams }) {
-    const paginateItems = await getSearch('n');
+    const paginateItems = await getSearch(searchParams.name);
     return (
         <div className="flex my-5 disabled:bg-gray-800 ">
             <aside className="w-[270px]">
@@ -25,7 +25,10 @@ export default async function Page({ searchParams }:{ searchParams:SearchParams 
                         </div>
                     </div>
                 </div>
-                <GridProduct paginateItems={paginateItems} searchParams={searchParams} />
+                <GridProduct
+                    paginateUrl="/product/search="
+                    paginateItems={paginateItems}
+                />
             </section>
         </div>
     );

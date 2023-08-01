@@ -26,7 +26,10 @@ export default async function Page({ searchParams }:{ searchParams:SearchParams 
                         </div>
                     </div>
                 </div>
-                <GridProduct paginateItems={paginateItems} searchParams={searchParams} />
+                <GridProduct
+                    paginateUrl="/product?offset="
+                    paginateItems={paginateItems}
+                />
             </section>
         </div>
 

@@ -4,7 +4,7 @@ export async function getSearch(name:string) {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ name }),
+            body: JSON.stringify({ limit: 20, name }),
             method: 'POST',
         });
         return await data.json();

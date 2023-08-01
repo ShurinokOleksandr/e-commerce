@@ -15,9 +15,6 @@ export function Header() {
     const sumAllItems = useCartStore((state) => state.sumAllItems);
     const cartStore = useCartStore((state) => state.items);
 
-    const handleClickOpenDrawer = () => {
-        setIsDrawer(true);
-    };
     useEffect(() => {
         sumAllItems();
     }, [cartStore]);
@@ -41,7 +38,7 @@ export function Header() {
                         </div>
                     </section>
                     <IconButton
-                        onClick={handleClickOpenDrawer}
+                        onClick={() => setIsDrawer(true)}
                         icon={<Bars3Icon width={25} />}
                         className="block md:hidden"
                         variant="primary"

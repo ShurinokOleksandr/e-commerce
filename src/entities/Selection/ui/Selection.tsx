@@ -17,7 +17,7 @@ export function Selection() {
             {
                 isOpen
                     ? (
-                        <div className="absolute w-72 rounded-md border-2 shadow-2xl bg-white px-10 py-8">
+                        <div className="absolute z-50 w-72 rounded-md border-2 shadow-2xl bg-white px-10 py-8">
                             <ul className="flex flex-col gap-y-5">
                                 <li>Sort by popularity</li>
                                 <li>Sort by latest</li>
