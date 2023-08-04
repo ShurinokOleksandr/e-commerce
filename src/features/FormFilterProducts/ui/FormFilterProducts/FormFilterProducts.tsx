@@ -12,7 +12,7 @@ export type Inputs = {
 };
 export function FormFilterProducts() {
     const {
-        formState: { errors }, handleSubmit, register, watch,
+        formState: { errors }, handleSubmit, register, reset,
     } = useForm<Inputs>();
     const router = useRouter();
     const onSubmit: SubmitHandler<Inputs> = (data) => {
@@ -36,7 +36,10 @@ export function FormFilterProducts() {
                     name="Категория запчастей"
                 />
             </div>
-            <Button name="Поиск товаров" variant="secondary" />
+            <div className="flex flex-col my-2 gap-y-2">
+                <Button name="Поиск товаров" variant="addCart" type="submit" />
+                <Button onClick={() => reset()} name="Сбросить фильтры" variant="addCart" />
+            </div>
         </form>
     );
 }

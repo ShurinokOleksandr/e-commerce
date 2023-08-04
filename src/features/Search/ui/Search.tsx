@@ -1,4 +1,5 @@
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
+import { useElementClick } from '@/shared/hooks/useElementClick';
 import { useSearchStore } from '@/features/Search/model/store';
 import Typography from '@/shared/ui/Typography/ui/Typography';
 import React, { useEffect, useState, useRef } from 'react';
@@ -15,22 +16,13 @@ export function Search() {
     const setSearchInput = useSearchStore((state) => state.setSearchInput);
     const setDataSearch = useSearchStore((state) => state.setSearchItems);
     const router = useRouter();
-    const searchResultsRef = useRef<HTMLDivElement | null>(null); // Create a ref for the search results container
+    const clearSearch = () => {
+        setIsOpen(false);
+        setDataSearch([]);
+        setSearchInput('');
+    };
+    const ref = useElementClick([clearSearch]);
 
-    useEffect(() => {
-        const handleOutsideClick = (e:MouseEvent) => {
-            if (searchResultsRef.current && !searchResultsRef.current.contains(e.target as Node)) {
-                setIsOpen(false);
-                setSearchInput('');
-                setDataSearch([]);
-            }
-        };
-        document.addEventListener('click', handleOutsideClick);
-
-        return () => {
-            document.removeEventListener('click', handleOutsideClick);
-        };
-    }, []);
     const searchItems = async () => {
         try {
             setIsOpen(true);
@@ -49,16 +41,10 @@ export function Search() {
             console.log(e);
         }
     };
-    const clearSearch = () => {
-        setIsOpen(false);
-        setDataSearch([]);
-        setSearchInput('');
-    };
 
     const redirectToProduct = (id:number) => {
         router.push(`/product/${id}`);
-        setIsOpen(false);
-        setSearchInput('');
+        clearSearch();
     };
 
     const redirectToCatalog = (name:string) => {
@@ -66,7 +52,7 @@ export function Search() {
         setIsOpen(false);
     };
     return (
-        <div className="w-3/5 mx-5 relative" ref={searchResultsRef}>
+        <div className="w-3/5 mx-5 relative" ref={ref}>
 
             <Input
                 searchButton={(

@@ -1,8 +1,8 @@
 'use client';
 
 import { ProductResponse } from '@/entities/ProductGrid/types/PaginateType';
+import { useProductStore } from '@/entities/ProductGrid/model/store';
 import { SearchParams } from '@/shared/types/SearchParams';
-import { Pagination } from '@/entities/Pagination';
 import React, { useState, memo } from 'react';
 import { Product } from '@/entities/Product';
 import { useRouter } from 'next/navigation';
@@ -19,7 +19,6 @@ export function GridProduct({ paginateItems, searchParams, paginateUrl }:GridPro
     const [currentPage, setCurrentPage] = useState(0);
     // Counts of pages for pagination
     const pageCounts = Math.ceil(paginateItems.count / 20);
-
     console.log(paginateItems);
 
     const pc = searchParams.pc ? `&pc=${searchParams.pc}` : '';
