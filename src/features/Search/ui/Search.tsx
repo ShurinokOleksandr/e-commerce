@@ -18,8 +18,8 @@ export function Search() {
     const searchResultsRef = useRef<HTMLDivElement | null>(null); // Create a ref for the search results container
 
     useEffect(() => {
-        const handleOutsideClick = (e) => {
-            if (searchResultsRef.current && !searchResultsRef.current.contains(e.target)) {
+        const handleOutsideClick = (e:MouseEvent) => {
+            if (searchResultsRef.current && !searchResultsRef.current.contains(e.target as Node)) {
                 setIsOpen(false);
                 setSearchInput('');
                 setDataSearch([]);

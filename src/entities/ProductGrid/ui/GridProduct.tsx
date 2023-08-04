@@ -10,17 +10,22 @@ import ReactPaginate from 'react-paginate';
 
 interface GridProductProps {
     paginateUrl:string
+    searchParams:SearchParams
     paginateItems: ProductResponse
 }
 
-export function GridProduct({ paginateItems, paginateUrl }:GridProductProps) {
+export function GridProduct({ paginateItems, searchParams, paginateUrl }:GridProductProps) {
     const router = useRouter();
     const [currentPage, setCurrentPage] = useState(0);
     // Counts of pages for pagination
     const pageCounts = Math.ceil(paginateItems.count / 20);
 
+    console.log(paginateItems);
+
+    const pc = searchParams.pc ? `&pc=${searchParams.pc}` : '';
+    const parts = searchParams.parts ? `&parts=${searchParams.parts}` : '';
     const handleClickPaginate = (value: number) => {
-        router.push(`${paginateUrl}${value}`);
+        router.push(`${paginateUrl}${value}${pc}${parts}`);
         setCurrentPage(value);
     };
     return (

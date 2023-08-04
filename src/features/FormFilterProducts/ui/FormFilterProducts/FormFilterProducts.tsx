@@ -1,18 +1,42 @@
 'use client';
 
 import { CheckboxFilterList, partsManufactures, pcManufactures } from '@/entities/CheckboxFilter';
-import MultiRangeSlider from '@/shared/ui/MultiRange/MultiRangeSlider';
-import React, { useEffect, useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import Button from '@/shared/ui/Button/Button';
+import { useRouter } from 'next/navigation';
+import React from 'react';
 
+export type Inputs = {
+    Parts: string[],
+    Pc: string[],
+};
 export function FormFilterProducts() {
+    const {
+        formState: { errors }, handleSubmit, register, watch,
+    } = useForm<Inputs>();
+    const router = useRouter();
+    const onSubmit: SubmitHandler<Inputs> = (data) => {
+        const pc = data.Pc ? `&pc=${data.Pc.join(',')}` : '';
+        const parts = data.Parts ? `&parts=${data.Parts.join(',')}` : '';
+        router.push(`/product?offset=0${pc}${parts}`);
+    };
     return (
-        <form method="post">
+        <form onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col gap-y-10">
-                <CheckboxFilterList listFilters={pcManufactures} name="Категория товаров" />
+                <CheckboxFilterList
+                    stateInput={{ ...register('Pc') }}
+                    listFilters={pcManufactures}
+                    name="Категория товаров"
+                />
                 {/* eslint-disable-next-line react/jsx-no-undef */}
                 {/* <MultiRangeSlider max={100} min={0} /> */}
-                <CheckboxFilterList listFilters={partsManufactures} name="Категория запчастей" />
+                <CheckboxFilterList
+                    stateInput={{ ...register('Parts') }}
+                    listFilters={partsManufactures}
+                    name="Категория запчастей"
+                />
             </div>
+            <Button name="Поиск товаров" variant="secondary" />
         </form>
     );
 }
