@@ -1,10 +1,11 @@
 import { FormFilterProducts } from '@/features/FormFilterProducts';
+import { SelectedFilters } from '@/features/SelectedFilters';
 import { SearchParams } from '@/shared/types/SearchParams';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { GridProduct } from '@/entities/ProductGrid';
 import { Selection } from '@/entities/Selection';
-import { getSearch } from '@/action/getSearch';
 import Button from '@/shared/ui/Button/Button';
+import { getSearch } from '@/action/getSearch';
 import React from 'react';
 
 export default async function Page({ searchParams }:{ searchParams:SearchParams }) {
@@ -18,16 +19,13 @@ export default async function Page({ searchParams }:{ searchParams:SearchParams 
                 <div className="mb-5">
                     <div className="flex justify-between bg-light-primary rounded p-3 w-full">
                         <Selection />
-                        <div className="flex gap-4 items-center flex-wrap justify-start w-3/4">
-                            <Button icon={<XMarkIcon width={20} />} name="Clear all" variant="third" size="small" className="" position />
-                            <Button icon={<XMarkIcon width={20} />} name="Clear all" variant="third" size="small" position />
-                            <Button icon={<XMarkIcon width={20} />} name="Clear all" variant="third" size="small" position />
-                        </div>
+                        <SelectedFilters />
                     </div>
                 </div>
                 <GridProduct
                     paginateUrl="/product/search="
                     paginateItems={paginateItems}
+                    searchParams={searchParams}
                 />
             </section>
         </div>

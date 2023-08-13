@@ -5,8 +5,8 @@ import { ArrowRightIcon } from '@heroicons/react/24/outline';
 import { ShoppingCartItem } from '@/shared/types/Product';
 import { Swiper } from '@/shared/ui/Swiper/ui/Swiper';
 import Button from '@/shared/ui/Button/Button';
+import React, { useRef } from 'react';
 import Link from 'next/link';
-import React from 'react';
 
 type RowData = {
     rows: ShoppingCartItem[];
@@ -20,6 +20,7 @@ interface ProductListSwiperProps {
 export function ProductListSwiper({
     subTitle, title, row,
 }:ProductListSwiperProps) {
+    const ref = useRef(null);
     return (
         <section>
             <header>
@@ -39,8 +40,9 @@ export function ProductListSwiper({
                             <Button
                                 icon={<ArrowRightIcon width={15} />}
                                 position={false}
-                                name="View all"
                                 variant="third"
+                                name="View all"
+                                ref={ref}
                             />
                         </Link>
                     </div>

@@ -1,6 +1,7 @@
 import StoreInitializer from '@/entities/ProductGrid/model/StoreInitializer';
 import { useProductStore } from '@/entities/ProductGrid/model/store';
 import { FormFilterProducts } from '@/features/FormFilterProducts';
+import { SelectedFilters } from '@/features/SelectedFilters';
 import { SearchParams } from '@/shared/types/SearchParams';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { getPagination } from '@/action/getPagination';
@@ -24,11 +25,7 @@ export default async function Page({ searchParams }:{ searchParams:SearchParams 
                 <div className="mb-5">
                     <div className="flex justify-between bg-light-primary rounded p-3 w-full">
                         <Selection />
-                        <div className="flex gap-4 items-center flex-wrap justify-start w-3/4">
-                            <Button icon={<XMarkIcon width={20} />} name="Clear all" variant="third" size="small" className="" position />
-                            <Button icon={<XMarkIcon width={20} />} name="Clear all" variant="third" size="small" position />
-                            <Button icon={<XMarkIcon width={20} />} name="Clear all" variant="third" size="small" position />
-                        </div>
+                        <SelectedFilters />
                     </div>
                 </div>
                 <GridProduct

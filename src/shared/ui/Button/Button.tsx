@@ -28,13 +28,12 @@ const button = cva('p-2 transform active:scale-75 transition-transform  flex ite
 
 interface ButtonProps extends ReactTagProps<'button'>, VariantProps<typeof button> {
     name?:string;
-    loading?:boolean;
     className?:string;
     position?:boolean;
     icon?:React.ReactNode;
 }
 function Button({
-    className, disabled, position, onClick, loading, variant, name, size, icon, type,
+    className, position, disabled, variant, onClick, icon, size, name, ...props
 }:ButtonProps) {
     const isDisabled = `block ${disabled && 'opacity-10'}`;
     return (
@@ -42,9 +41,8 @@ function Button({
             className={button({ className, variant, size })}
             disabled={disabled}
             onClick={onClick}
-            type={type}
+            {...props}
         >
-
             {/* Icon Button */}
             {
                 position === true && (
@@ -67,7 +65,6 @@ function Button({
                     </div>
                 )
             }
-
         </button>
     );
 }

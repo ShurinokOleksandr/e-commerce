@@ -32,7 +32,7 @@ export default function Home() {
                     <Button variant="third" name="Sign in" />
                 </div>
                 <div>
-                    <form className="flex flex-col gap-y-5" onSubmit={onSubmit} o>
+                    <form className="flex flex-col gap-y-5" onSubmit={onSubmit}>
                         <div>
                             <label htmlFor="username">
                                 <Typography variant="semibold" text="Username *" />

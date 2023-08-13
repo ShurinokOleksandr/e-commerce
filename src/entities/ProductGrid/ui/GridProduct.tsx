@@ -3,7 +3,7 @@
 import { ProductResponse } from '@/entities/ProductGrid/types/PaginateType';
 import { useProductStore } from '@/entities/ProductGrid/model/store';
 import { SearchParams } from '@/shared/types/SearchParams';
-import React, { useState, memo } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Product } from '@/entities/Product';
 import { useRouter } from 'next/navigation';
 import ReactPaginate from 'react-paginate';
@@ -16,16 +16,18 @@ interface GridProductProps {
 
 export function GridProduct({ paginateItems, searchParams, paginateUrl }:GridProductProps) {
     const router = useRouter();
-    const [currentPage, setCurrentPage] = useState(0);
+    // const [currentPage, setCurrentPage] = useState(0);
+    const { setPaginate, paginate } = useProductStore((state) => state);
     // Counts of pages for pagination
     const pageCounts = Math.ceil(paginateItems.count / 20);
     console.log(paginateItems);
 
-    const pc = searchParams.pc ? `&pc=${searchParams.pc}` : '';
-    const parts = searchParams.parts ? `&parts=${searchParams.parts}` : '';
+    const pc = searchParams?.pc ? `&pc=${searchParams.pc}` : '';
+    const sort = searchParams?.sortBy ? `&sortBy=${searchParams.sortBy}` : '';
+    const parts = searchParams?.parts ? `&parts=${searchParams.parts}` : '';
     const handleClickPaginate = (value: number) => {
-        router.push(`${paginateUrl}${value}${pc}${parts}`);
-        setCurrentPage(value);
+        router.push(`${paginateUrl}${value}${pc}${parts}${sort}`);
+        setPaginate(value);
     };
     return (
         <section className="border">
@@ -45,12 +47,12 @@ export function GridProduct({ paginateItems, searchParams, paginateUrl }:GridPro
                 nextClassName="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
                 pageLinkClassName="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300  focus:z-20 focus:outline-offset-0"
                 breakLinkClassName="relative inline-flex cursor-default items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 "
-                className="flex items-center  border-t border-gray-200 bg-white px-4 py-3 sm:px-6"
+                className="flex items-center border-t border-gray-200 bg-white px-4 py-3 sm:px-6"
                 containerClassName="isolate inline-flex -space-x-px rounded-md shadow-sm"
                 onPageChange={(e) => handleClickPaginate(e.selected)}
                 activeClassName="bg-indigo-600"
-                forcePage={currentPage}
                 pageCount={pageCounts}
+                forcePage={paginate}
                 breakLabel="..."
             />
         </section>

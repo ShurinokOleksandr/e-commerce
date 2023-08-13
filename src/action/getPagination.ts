@@ -7,8 +7,12 @@ export async function getPagination(obj:SearchParams) {
     const parts = obj.parts ? `&parts=${obj.parts}` : '';
     const sortBy = obj.sortBy ? `&sortBy=${obj.sortBy}` : '';
     try {
-        const data = await fetch(`http://localhost:4000/computers?limit=20&${offset}${pc}${parts}${sortBy}`)
-            .then((data) => data.json());
+        const data = await fetch(`http://localhost:4000/computers?limit=20&${offset}${pc}${parts}${sortBy}`, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then((dat) => dat.json());
         const state = useProductStore.getState().ProductItems;
         useProductStore.setState({ ProductItems: data });
     } catch (e) {

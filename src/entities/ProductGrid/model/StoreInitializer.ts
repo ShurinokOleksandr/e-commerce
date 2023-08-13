@@ -1,10 +1,10 @@
 'use client';
 
+import { ProductResponse } from '@/entities/ProductGrid/types/PaginateType';
 import { useProductStore } from '@/entities/ProductGrid/model/store';
-import { ProductType } from '@/entities/Product';
 import { useRef } from 'react';
 
-function StoreInitializer({ products }: { products:ProductType[] }) {
+function StoreInitializer({ products }: { products:ProductResponse }) {
     const initialized = useRef(false);
     if (!initialized.current) {
         useProductStore.setState({ ProductItems: products });

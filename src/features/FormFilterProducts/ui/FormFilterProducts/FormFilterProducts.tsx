@@ -1,9 +1,10 @@
 'use client';
 
 import { CheckboxFilterList, partsManufactures, pcManufactures } from '@/entities/CheckboxFilter';
+import { useProductStore } from '@/entities/ProductGrid/model/store';
+import { useSearchParams, useRouter } from 'next/navigation';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import Button from '@/shared/ui/Button/Button';
-import { useRouter } from 'next/navigation';
 import React from 'react';
 
 export type Inputs = {
@@ -15,10 +16,15 @@ export function FormFilterProducts() {
         formState: { errors }, handleSubmit, register, reset,
     } = useForm<Inputs>();
     const router = useRouter();
+    const searchParams = useSearchParams();
+    const setPaginate = useProductStore((state) => state.setPaginate);
+
     const onSubmit: SubmitHandler<Inputs> = (data) => {
+        setPaginate(0);
+        const sortBy = searchParams.get('sortBy') !== null ? `&sortBy=${searchParams.get('sortBy')}` : '';
         const pc = data.Pc ? `&pc=${data.Pc.join(',')}` : '';
         const parts = data.Parts ? `&parts=${data.Parts.join(',')}` : '';
-        router.push(`/product?offset=0${pc}${parts}`);
+        router.push(`/product?offset=0${pc}${parts}${sortBy}`);
     };
     return (
         <form onSubmit={handleSubmit(onSubmit)}>

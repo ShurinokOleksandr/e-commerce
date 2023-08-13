@@ -5,7 +5,7 @@ import React from 'react';
 export function Pagination() {
     const [active, setActive] = React.useState(1);
 
-    const getItemProps = (index) => ({
+    const getItemProps = (index: number) => ({
         color: active === index ? 'blue' : 'blue-gray',
         variant: active === index ? 'filled' : 'text',
         onClick: () => setActive(index),
