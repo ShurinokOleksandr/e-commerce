@@ -1,10 +1,8 @@
 import { FormFilterProducts } from '@/features/FormFilterProducts';
 import { SelectedFilters } from '@/features/SelectedFilters';
 import { SearchParams } from '@/shared/types/SearchParams';
-import { XMarkIcon } from '@heroicons/react/24/outline';
 import { GridProduct } from '@/entities/ProductGrid';
 import { Selection } from '@/entities/Selection';
-import Button from '@/shared/ui/Button/Button';
 import { getSearch } from '@/action/getSearch';
 import React from 'react';
 
@@ -25,7 +23,6 @@ export default async function Page({ searchParams }:{ searchParams:SearchParams 
                 <GridProduct
                     paginateUrl="/product/search="
                     paginateItems={paginateItems}
-                    searchParams={searchParams}
                 />
             </section>
         </div>

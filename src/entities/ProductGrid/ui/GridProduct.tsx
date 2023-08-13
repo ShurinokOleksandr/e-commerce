@@ -2,33 +2,23 @@
 
 import { ProductResponse } from '@/entities/ProductGrid/types/PaginateType';
 import { useProductStore } from '@/entities/ProductGrid/model/store';
-import { SearchParams } from '@/shared/types/SearchParams';
-import React, { useEffect, useState } from 'react';
+import { useSetPaginate } from '@/shared/hooks/useSetPaginate';
+import { useGetParams } from '@/shared/hooks/useGetParams';
 import { Product } from '@/entities/Product';
-import { useRouter } from 'next/navigation';
 import ReactPaginate from 'react-paginate';
+import React from 'react';
 
 interface GridProductProps {
     paginateUrl:string
-    searchParams:SearchParams
     paginateItems: ProductResponse
 }
 
-export function GridProduct({ paginateItems, searchParams, paginateUrl }:GridProductProps) {
-    const router = useRouter();
-    // const [currentPage, setCurrentPage] = useState(0);
-    const { setPaginate, paginate } = useProductStore((state) => state);
-    // Counts of pages for pagination
-    const pageCounts = Math.ceil(paginateItems.count / 20);
-    console.log(paginateItems);
+export function GridProduct({ paginateItems, paginateUrl }:GridProductProps) {
+    const paginate = useProductStore((state) => state.paginate);
 
-    const pc = searchParams?.pc ? `&pc=${searchParams.pc}` : '';
-    const sort = searchParams?.sortBy ? `&sortBy=${searchParams.sortBy}` : '';
-    const parts = searchParams?.parts ? `&parts=${searchParams.parts}` : '';
-    const handleClickPaginate = (value: number) => {
-        router.push(`${paginateUrl}${value}${pc}${parts}${sort}`);
-        setPaginate(value);
-    };
+    const { parts, sort, pc } = useGetParams();
+
+    const handleClickPaginate = useSetPaginate();
     return (
         <section className="border">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 w-full">
@@ -47,11 +37,11 @@ export function GridProduct({ paginateItems, searchParams, paginateUrl }:GridPro
                 nextClassName="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
                 pageLinkClassName="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300  focus:z-20 focus:outline-offset-0"
                 breakLinkClassName="relative inline-flex cursor-default items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 "
+                onPageChange={(e) => handleClickPaginate(`${paginateUrl}${e.selected}${pc}${parts}${sort}`, e.selected)}
                 className="flex items-center border-t border-gray-200 bg-white px-4 py-3 sm:px-6"
                 containerClassName="isolate inline-flex -space-x-px rounded-md shadow-sm"
-                onPageChange={(e) => handleClickPaginate(e.selected)}
+                pageCount={Math.ceil(paginateItems.count / 20)}
                 activeClassName="bg-indigo-600"
-                pageCount={pageCounts}
                 forcePage={paginate}
                 breakLabel="..."
             />
