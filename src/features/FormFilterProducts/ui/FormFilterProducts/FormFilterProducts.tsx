@@ -26,8 +26,10 @@ export function FormFilterProducts() {
         setPaginate(0);
         const pc = data.Pc ? `&pc=${data.Pc.join(',')}` : '';
         const parts = data.Parts ? `&parts=${data.Parts.join(',')}` : '';
+        const dataPc = data?.Pc || [];
+        const dataParts = data?.Parts || [];
         router.push(`/product?offset=0${pc}${parts}${sort}`);
-        setSelectedItem([...data.Parts, ...data.Pc]);
+        setSelectedItem([...dataPc, ...dataParts]);
     };
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -37,8 +39,6 @@ export function FormFilterProducts() {
                     listFilters={pcManufactures}
                     name="Категория товаров"
                 />
-                {/* eslint-disable-next-line react/jsx-no-undef */}
-                {/* <MultiRangeSlider max={100} min={0} /> */}
                 <CheckboxFilterList
                     stateInput={{ ...register('Parts') }}
                     listFilters={partsManufactures}

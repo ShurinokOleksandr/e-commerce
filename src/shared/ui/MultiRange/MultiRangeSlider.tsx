@@ -1,104 +1,59 @@
-'use client';
+/* eslint react/no-multi-comp: 0, no-console: 0 */
+import Slider from 'rc-slider';
+import React from 'react';
 
-import React, {
-    useCallback, useEffect, useState, useRef,
-} from 'react';
-import { twMerge } from 'tailwind-merge';
-import classnames from 'classnames';
-import PropTypes from 'prop-types';
+const style = { width: 400, margin: 50 };
 
-interface MultiRangeSliderProps {
-    min:number;
-    max:number;
-    onChange?:() => void;
+function log(value) {
+    console.log(value); //eslint-disable-line
 }
-function MultiRangeSlider({ onChange, max, min }:MultiRangeSliderProps) {
-    const [minVal, setMinVal] = useState(min);
-    const [maxVal, setMaxVal] = useState(max);
-    const minValRef = useRef<HTMLInputElement>(null);
-    const maxValRef = useRef<HTMLInputElement>(null);
-    const range = useRef<HTMLDivElement>(null);
 
-    // Convert to percentage
-    const getPercent = useCallback(
-        (value:number) => Math.round(((value - min) / (max - min)) * 100),
-        [min, max],
-    );
+class RangeSlider extends React.Component<any, any> {
+    handleApply = () => {
+        const { lowerBound, upperBound } = this.state;
+        this.setState({ value: [lowerBound, upperBound] });
+    };
 
-    // Set width of the range to decrease from the left side
-    useEffect(() => {
-        if (maxValRef.current) {
-            const minPercent = getPercent(minVal);
-            const maxPercent = getPercent(+maxValRef.current.value); // Preceding with '+' converts the value from type string to type number
+    onSliderChange = (value) => {
+        log(value);
+        this.setState({
+            value,
+        });
+    };
 
-            if (range.current) {
-                range.current.style.left = `${minPercent}%`;
-                range.current.style.width = `${maxPercent - minPercent}%`;
-            }
-        }
-    }, [minVal, getPercent]);
+    onUpperBoundChange = (e) => {
+        this.setState({ upperBound: +e.target.value });
+    };
 
-    // Set width of the range to decrease from the right side
-    useEffect(() => {
-        if (minValRef.current) {
-            const minPercent = getPercent(+minValRef.current.value);
-            const maxPercent = getPercent(maxVal);
+    onLowerBoundChange = (e) => {
+        this.setState({ lowerBound: +e.target.value });
+    };
 
-            if (range.current) {
-                // @ts-ignore
-                range.current.style.width = `${maxPercent - minPercent}%`;
-            }
-        }
-    }, [maxVal, getPercent]);
+    constructor(props) {
+        super(props);
+        this.state = {
+            value: [20, 40],
+            upperBound: 40,
+            lowerBound: 20,
+        };
+    }
 
-    // // Get min and max values when their state changes
-    // useEffect(() => {
-    //     onChange({ min: minVal, max: maxVal });
-    // }, [minVal, maxVal, onChange]);
-
-    return (
-        <div className="container">
-            <input
-                onChange={(event) => {
-                    const value = Math.min(+event.target.value, maxVal - 1);
-                    setMinVal(value);
-                    event.target.value = value.toString();
-                }}
-                className={twMerge('thumb thumb--zindex-3', `${minVal > max - 100 && 'z-50'} `)}
-                ref={minValRef}
-                value={minVal}
-                type="range"
-                max={max}
-                min={min}
-            />
-            <input
-                onChange={(event:React.ChangeEvent<HTMLInputElement>) => {
-                    const value = Math.max(+event.target.value, minVal + 1);
-                    setMaxVal(value);
-                    event.target.value = value.toString();
-                }}
-                className={twMerge('thumb thumb--zindex-3', `${minVal > max - 100 && 'z-50'} `)}
-                ref={maxValRef}
-                value={maxVal}
-                type="range"
-                max={max}
-                min={min}
-            />
-
-            <div className="slider">
-                <div className="slider__track" />
-                <div className="slider__range" ref={range} />
-                <div className="slider__left-value">{minVal}</div>
-                <div className="slider__right-value">{maxVal}</div>
+    render() {
+        return (
+            <div>
+                <label>LowerBound: </label>
+                <input onChange={this.onLowerBoundChange} value={this.state.lowerBound} type="number" />
+                <br />
+                <label>UpperBound: </label>
+                <input onChange={this.onUpperBoundChange} value={this.state.upperBound} type="number" />
+                <br />
+                <button onClick={this.handleApply} type="button">
+                    Apply
+                </button>
+                <br />
+                <br />
+                <Slider onChange={this.onSliderChange} value={this.state.value} allowCross={false} range />
             </div>
-        </div>
-    );
+        );
+    }
 }
-
-MultiRangeSlider.propTypes = {
-    onChange: PropTypes.func.isRequired,
-    max: PropTypes.number.isRequired,
-    min: PropTypes.number.isRequired,
-};
-
-export default MultiRangeSlider;
