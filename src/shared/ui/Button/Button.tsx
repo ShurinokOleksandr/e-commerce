@@ -1,4 +1,5 @@
 import { VariantProps, cva } from 'class-variance-authority';
+import { twMerge } from 'tailwind-merge';
 import React from 'react';
 
 const button = cva('p-2 transform active:scale-75 transition-transform  flex items-center gap-x-1 justify-center  rounded-2xl transition ', {
@@ -11,6 +12,7 @@ const button = cva('p-2 transform active:scale-75 transition-transform  flex ite
             submit: 'bg-dark-secondary text-light-primary hover:bg-dark-primary',
             secondary: 'bg-light-third w-12   hover:bg-hover-third',
             swiper: 'bg-white ',
+            none: '',
         },
         size: {
             small: ['w-30  h-10 text-sm'],
@@ -38,7 +40,7 @@ function Button({
     const isDisabled = `block ${disabled && 'opacity-10'}`;
     return (
         <button
-            className={button({ className, variant, size })}
+            className={twMerge(button({ className, variant, size }))}
             disabled={disabled}
             onClick={onClick}
             {...props}

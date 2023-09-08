@@ -4,6 +4,7 @@ import { ProductListSwiper } from '@/entities/ProductListSwiper';
 import { getProductById } from '@/action/getProductById';
 import { getBestsellers } from '@/action/getBestsellers';
 import { BreadCrumbs } from '@/entities/Breadcrumbs';
+import { Comment } from '@/features/CommentSystem';
 import { ProductType } from '@/entities/Product';
 import { SwiperImage } from '@/entities/Swiper';
 import React from 'react';
@@ -29,6 +30,10 @@ export default async function Page({ params }: { params: { id: string } }) {
                         title="Лучшие продажи"
                         row={bestsellers}
                     />
+                    <div className="my-5">
+                        <Comment />
+                    </div>
+
                 </section>
             </div>
         </main>

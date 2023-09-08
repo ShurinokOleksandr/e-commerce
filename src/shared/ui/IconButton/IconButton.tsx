@@ -2,8 +2,8 @@ import { VariantProps, cva } from 'class-variance-authority';
 import React from 'react';
 
 export interface IconButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof iconButton> {
-    icon:React.ReactNode;
     className?:string;
+    icon:React.ReactNode;
 }
 
 const iconButton = cva(' flex items-center justify-center border rounded-full hover:bg-light-primary', {
@@ -20,6 +20,7 @@ const iconButton = cva(' flex items-center justify-center border rounded-full ho
         size: {
             large: ['w-[100px] h-[100px]'],
             medium: ['w-[50px] h-[50px]'],
+            small: 'w-10 h-10',
         },
     },
     defaultVariants: {
