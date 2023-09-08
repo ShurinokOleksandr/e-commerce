@@ -45,7 +45,7 @@ function Button({
             onClick={onClick}
             {...props}
         >
-            {/* Icon Button */}
+            {/* Icon Button text */}
             {
                 position === true && (
                     <div className={` ${isDisabled} `}>
