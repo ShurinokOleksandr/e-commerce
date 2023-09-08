@@ -16,6 +16,7 @@ function CommentBody() {
                     <IconButton icon={<HeartIcon width={25} />} size="small" />
                     <Button variant="third" name="Скрыть" size="small" />
                 </div>
+                {/*     sadsadas */}
             </div>
             <div className="flex flex-col gap-y-10 p-4">
                 {/* <CommentItem /> */}
