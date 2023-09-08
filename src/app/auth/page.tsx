@@ -26,7 +26,6 @@ export default function Home() {
     const setProfile = useProfileStore((state) => state.setProfileData);
     const profile = useProfileStore((state) => state.profile);
 
-    console.log(profile);
     const onSubmit = handleSubmit(async (data) => {
         if (isSignUp) {
             axios.post('http://localhost:4000/auth-by-jwt/signup', {
@@ -65,13 +64,13 @@ export default function Home() {
             <div className=" flex flex-col gap-y-10 w-1/3 border mx-auto p-20 m-14">
                 <div className="flex gap-5">
                     <Button
-                        className={isSignUp ? 'bg-red-300' : 'none'}
+                        className={isSignUp ? 'bg-amber-300' : 'none'}
                         onClick={() => setIsSignUp(true)}
                         variant="third"
                         name="Sign up"
                     />
                     <Button
-                        className={!isSignUp ? 'bg-red-300' : 'none'}
+                        className={!isSignUp ? 'bg-amber-300' : 'none'}
                         onClick={() => setIsSignUp(false)}
                         variant="third"
                         name="Sign in"

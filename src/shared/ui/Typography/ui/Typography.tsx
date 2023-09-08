@@ -1,4 +1,5 @@
 import { VariantProps, cva } from 'class-variance-authority';
+import { twMerge } from 'tailwind-merge';
 import React from 'react';
 
 const typography = cva('py-1', {
@@ -40,9 +41,9 @@ function Typography({
 }:TypographyProps) {
     return (
         <p
-            className={typography({
+            className={twMerge(typography({
                 className, position, variant, size,
-            })}
+            }))}
         >
             {text}
         </p>
